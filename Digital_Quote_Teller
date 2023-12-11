@@ -1,0 +1,151 @@
+import random 
+
+  
+
+class DigitalQuoteTeller: 
+
+    def __init__(self): 
+
+        # List of quotes in the Digital Quote Teller 
+
+        self.messages = [ 
+
+            "Act selfless, you will be infinite.", 
+
+            "Real happiness lies in that which never comes nor goes, but simply is.", 
+
+            "Your life is based on the capacity of energy in you, not outside of you.", 
+
+            "Travel light, live light, spread the light, be the light.", 
+
+            "Greatness is measured by your gifts, not your possessions.", 
+
+            "Appreciate yourself and honor your soul.", 
+
+            "Always be pure, simple, and honest.", 
+
+            "Live with reverence for yourself and others." 
+
+        ] 
+
+  
+
+    def play(self): 
+
+        print("Welcome to the Digital Quote Teller!") 
+
+  
+
+        player_name = input("Enter your name: ") 
+
+  
+
+        while True:  # Introduce an infinite loop for replaying 
+
+            print("\nInstructions:") 
+
+            print("1. Pick a color (red, blue, green, yellow).") 
+
+            print("2. Spell the color of your choice.") 
+
+            print("3. Pick a number (1, 2, 3, 4).") 
+
+            print("4. Hit Enter to read your quote!") 
+
+  
+
+            input("Press Enter when you're ready to start the game...") 
+
+  
+
+            color = self.choose_color() 
+
+            number = self.choose_number() 
+
+  
+
+            quote = self.get_quote(color, number) 
+
+  
+
+            print(f"\n{player_name}, your quote is: {quote}") 
+
+  
+
+            replay = input("Do you want to play again? (yes/no): ").lower() 
+
+            if replay != 'yes': 
+
+                break  # Exit the loop if the user doesn't want to replay 
+
+  
+
+    def choose_color(self): 
+
+        # Get user input for color, validate it, and return the chosen color 
+
+        colors = ["red", "blue", "green", "yellow"] 
+
+        color = input("Choose a color (red, blue, green, yellow): ").lower() 
+
+  
+
+        while color not in colors: 
+
+            print("Invalid color. Please choose from red, blue, green, or yellow.") 
+
+            color = input("Choose a color (red, blue, green, yellow): ").lower() 
+
+  
+
+        return color 
+
+  
+
+    def choose_number(self): 
+
+        # Get user input for number, validate it, and return the chosen number 
+
+        number = input("Choose a number (1, 2, 3, 4): ") 
+
+  
+
+        while not number.isdigit() or int(number) not in range(1, 5): 
+
+            print("Invalid number. Please choose from 1, 2, 3, or 4.") 
+
+            number = input("Choose a number (1, 2, 3, 4): ") 
+
+  
+
+        return int(number) 
+
+  
+
+    def get_quote(self, color, number): 
+
+        # Calculate the index for the quote based on color and number 
+
+        index = (len(color) + number) % len(self.messages) 
+
+        return self.messages[index] 
+
+  
+
+def main(): 
+
+    # Instantiate the DigitalQuoteTeller class 
+
+    quote_teller_game = DigitalQuoteTeller() 
+
+  
+
+    # Start the game 
+
+    quote_teller_game.play() 
+
+  
+
+if __name__ == "__main__": 
+
+    main() 
